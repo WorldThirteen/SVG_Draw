@@ -78,7 +78,7 @@ export default class DrawController extends React.Component {
 
 	handleUp() {
 
-		// #this.mouseDown = false
+		this.mouseDown = false
 
 	}
 
@@ -109,7 +109,7 @@ export default class DrawController extends React.Component {
 
 					this.vectors[ this.vectors.length-1 ].push( vector )
 
-					this.updateCurve( vector ) 
+					this.updateCurve( vector, this.vectors[ this.vectors.length-1 ][ this.vectors[ this.vectors.length-1 ].length-1 ] ) 
 
 				}
 
@@ -228,7 +228,19 @@ export default class DrawController extends React.Component {
 
 		full.koef = w * ( 1 - (vecModule / this.state.size.w * vecModule / this.state.size.w) + 0.5 )
 
-		full.start = this.getAddPoints( coords.start, full.baseAngle, full.koef )
+		var vectorsLength = this.vectors[ this.vectors.length-1 ].length
+
+		if( vectorsLength ) {
+
+			var lastKoef = this.vectors[ this.vectors.length-1 ][ vectorsLength - 1 ].koef
+
+		} else {
+
+			var lastKoef = full.koef
+
+		}
+
+		full.start = this.getAddPoints( coords.start, full.baseAngle, lastKoef )
 
 		full.end = this.getAddPoints( coords.end, full.baseAngle, full.koef )
 
@@ -236,20 +248,20 @@ export default class DrawController extends React.Component {
 
 	}
 
-	getElipticPath( vector, pos ) {
+	getElipticPath( vector, pos, koef ) {
 
 		if( pos == 0 ) {
 
-			return " A " + vector.koef + "," + vector.koef + " 0 0 1" + this.getCoord( vector.start[pos] ) + " L" + this.getCoord( vector.end[pos] )
+			return " A " + koef + "," + koef + " 0 0 1" + this.getCoord( vector.start[pos] ) + " L" + this.getCoord( vector.end[pos] )
 
 		} else {
 
-			return " A " + vector.koef + "," + vector.koef + " 0 0 1" + this.getCoord( vector.end[pos] ) + " L" + this.getCoord( vector.start[pos] )
+			return " A " + koef + "," + koef + " 0 0 1" + this.getCoord( vector.end[pos] ) + " L" + this.getCoord( vector.start[pos] )
 
 		}
 	}
 
-	updateCurve( vector ) {
+	updateCurve( vector, prevVector ) {
 
 		if ( this.state.path[ this.state.path.length-1 ].full == undefined ) {
 
@@ -259,9 +271,9 @@ export default class DrawController extends React.Component {
 
 			var path = this.state.path[ this.state.path.length-1 ]
 
-			path.top += this.getElipticPath( vector, 0 )
+			path.top += this.getElipticPath( vector, 0, prevVector.koef )
 
-			path.bottom = this.getElipticPath( vector, 1 ) + " " + path.bottom
+			path.bottom = this.getElipticPath( vector, 1, vector.koef ) + " " + path.bottom
 
 			path.full = path.top + path.bottom
 

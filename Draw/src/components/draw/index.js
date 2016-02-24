@@ -67,9 +67,11 @@ export default class Draw extends DrawController {
 					className="field" 
 					viewBox={ "0 0 " + this.state.size.w + " " + this.state.size.h } 
 					// onMouseMove={ this.addNewPoint.bind( this ) } 
+					// onMouseDown={ this.handleDown.bind( this ) } 
 					onMouseDown={ this.addNewPoint.bind( this ) } 
-					onMouseLeave={ this.handleUp.bind( this ) } 
-					onMouseUp={ this.handleUp.bind( this ) }>
+					// onMouseLeave={ this.handleUp.bind( this ) } 
+					// onMouseUp={ this.handleUp.bind( this ) }
+				>
 					
 					{
 						this.state.path.map( ( value, key) => {
