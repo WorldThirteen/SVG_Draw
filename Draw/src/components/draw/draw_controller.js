@@ -214,7 +214,7 @@ export default class DrawController extends React.Component {
 
 		var full = {}
 
-		full.vector = this.getVector( coords.start, coords.end )
+		full.vector = this.getVector( coords.start, coords.end ) 
 
 		var vecModule = this.getModule( full.vector )
 
