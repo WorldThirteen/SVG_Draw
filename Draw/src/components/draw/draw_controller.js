@@ -20,7 +20,6 @@ export default class DrawController extends React.Component {
 			color: "black",
 			width: "5"
 
-
 		}
 
 	}
