@@ -1,0 +1,7 @@
+Counting objects: 4, done.
+Delta comp<replace with text>ession using up to 4 threads.
+Comp<replace with text>essing objects:  33% (1/3)   Compressing objects:  66% (2/3)   Compressing objects: 100% (3/3)   Compressing objects: 100% (3/3), done.
+W<replace with text>iting objects:  25% (1/4)   Writing objects:  50% (2/4)   Writing objects:  75% (3/4)   Writing objects: 100% (4/4)   Writing objects: 100% (4/4), 487 bytes | 0 bytes/s, done.
+Total 4 (delta 1), <replace with text>eused 0 (delta 0)
+To https://github.com/Wo<replace with text>ldThirteen/SVG_Draw.git
+   6498c29..e737a58  maste<replace with text> -> master
