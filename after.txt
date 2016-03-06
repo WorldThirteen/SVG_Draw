@@ -1,0 +1,7 @@
+Countingnobjects:n3,ndone.
+Deltancompressionnusingnupnton4nthreads.
+Compressingnobjects:nn33%n(1/3)nnnCompressingnobjects:nn66%n(2/3)nnnCompressingnobjects:n100%n(3/3)nnnCompressingnobjects:n100%n(3/3),ndone.
+Writingnobjects:nn33%n(1/3)nnnWritingnobjects:nn66%n(2/3)nnnWritingnobjects:n100%n(3/3)nnnWritingnobjects:n100%n(3/3),n386nbytesn|n0nbytes/s,ndone.
+Totaln3n(deltan2),nreusedn0n(deltan0)
+Tonhttps://github.com/WorldThirteen/SVG_Draw.git
+nnnb8010b9..6be22b3nnmastern->nmaster
