@@ -1,7 +1,1 @@
-Counting objects: 8, done.
-Delta compression using up to 4 threads.
-Compressing objects:  12% (1/8)   Compressing objects:  25% (2/8)   Compressing objects:  37% (3/8)   Compressing objects:  50% (4/8)   Compressing objects:  62% (5/8)   Compressing objects:  75% (6/8)   Compressing objects:  87% (7/8)   Compressing objects: 100% (8/8)   Compressing objects: 100% (8/8), done.
-Writing objects:  12% (1/8)   Writing objects:  25% (2/8)   Writing objects:  37% (3/8)   Writing objects:  50% (4/8)   Writing objects:  62% (5/8)   Writing objects:  75% (6/8)   Writing objects:  87% (7/8)   Writing objects: 100% (8/8)   Writing objects: 100% (8/8), 737 bytes | 0 bytes/s, done.
-Total 8 (delta 4), reused 0 (delta 0)
-To https://github.com/WorldThirteen/SVG_Draw.git
-   7bf4434..ae790b3  master -> master
+Everything up-to-date
