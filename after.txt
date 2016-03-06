@@ -1,7 +1,7 @@
 Counting objects: 4, done.bb
 Delta compression using up to 4 threads.bb
 Compressing objects:  25% (1/4)   Compressing objects:  50% (2/4)   Compressing objects:  75% (3/4)   Compressing objects: 100% (4/4)   Compressing objects: 100% (4/4), done.bb
-Writing objects:  25% (1/4)   Writing objects:  50% (2/4)   Writing objects:  75% (3/4)   Writing objects: 100% (4/4)   Writing objects: 100% (4/4), 709 bytes | 0 bytes/s, done.bb
-Total 4 (delta 2), reused 0 (delta 0)bb
+Writing objects:  25% (1/4)   Writing objects:  50% (2/4)   Writing objects:  75% (3/4)   Writing objects: 100% (4/4)   Writing objects: 100% (4/4), 663 bytes | 0 bytes/s, done.bb
+Total 4 (delta 1), reused 0 (delta 0)bb
 To https://github.com/WorldThirteen/SVG_Draw.gitbb
-   ebee800..84218bf  master -> masterbb
+   84218bf..722e929  master -> masterbb
