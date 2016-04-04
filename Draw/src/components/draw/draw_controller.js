@@ -1,6 +1,12 @@
 import React from 'react'
 import $ from 'jquery'
 import ReactDOM from 'react-dom'
+import Point from './point'
+import Vector from './vector'
+
+function last( arr ) {
+	return arr[ arr.length-1 ]
+}
 
 export default class DrawController extends React.Component {
 
@@ -14,7 +20,7 @@ export default class DrawController extends React.Component {
 				w: 0,
 				h: 0
 			},
-			lines: ["12", "123","12314"],
+			lines: [],
 			path: [],
 			points: [],
 			color: "black",
@@ -82,24 +88,28 @@ export default class DrawController extends React.Component {
 
 	}
 
+	getCurrentPoint( e ) {
+
+		return { 
+			x: (e.clientX - this.offsetLeft),
+			y: (e.clientY - this.offsetTop)
+		}
+
+	}
+
 	addNewPoint( e ) {
 
-		var count = this.state.lines.length - 1
-
 		if ( this.mouseDown &&
-			this.state.lines[ count ][ this.state.lines[ count ].length-1 ] != { x: (e.clientX - this.offsetLeft), y: (e.clientY - this.offsetTop)} ) {
+			last( last( this.state.lines ) ) != this.getCurrentPoint( e ) ) {
 
-			var currentPoit = { 
-				x: ( e.clientX - this.offsetLeft ), 
-				y: ( e.clientY - this.offsetTop )
-			}
+			var currentPoit = this.getCurrentPoint( e )
 
-			this.state.lines[ this.state.lines.length - 1 ].push( currentPoit )
+			last( this.state.lines ).push( currentPoit )
 
-			if ( this.state.lines[this.state.lines.length - 1].length > 1 ) {
+			if ( last( this.state.lines ).length > 1 ) {
 
 				var vectorCoords = { 
-					start: this.state.lines[ count ][ this.state.lines[ count ].length-2 ],
+					start: last( this.state.lines )[ last( this.state.lines ).length-2 ],
 					end: currentPoit
 				}
 
@@ -109,7 +119,7 @@ export default class DrawController extends React.Component {
 
 					this.vectors[ this.vectors.length-1 ].push( vector )
 
-					this.updateCurve( vector, this.vectors[ this.vectors.length-1 ][ this.vectors[ this.vectors.length-1 ].length-1 ] ) 
+					this.updateCurve( vector, last(last(this.vectors)) ) 
 
 				}
 
@@ -214,7 +224,7 @@ export default class DrawController extends React.Component {
 
 		var full = {}
 
-		full.vector = this.getVector( coords.start, coords.end ) 
+		full.vector = this.getVector( coords.start, coords.end )
 
 		var vecModule = this.getModule( full.vector )
 
@@ -228,11 +238,11 @@ export default class DrawController extends React.Component {
 
 		full.koef = w * ( 1 - (vecModule / this.state.size.w * vecModule / this.state.size.w) + 0.5 )
 
-		var vectorsLength = this.vectors[ this.vectors.length-1 ].length
+		var vectorsLength = last(this.vectors).length
 
 		if( vectorsLength ) {
 
-			var lastKoef = this.vectors[ this.vectors.length-1 ][ vectorsLength - 1 ].koef
+			var lastKoef = last(this.vectors)[ vectorsLength - 1 ].koef
 
 		} else {
 
@@ -263,13 +273,13 @@ export default class DrawController extends React.Component {
 
 	updateCurve( vector, prevVector ) {
 
-		if ( this.state.path[ this.state.path.length-1 ].full == undefined ) {
+		if ( last(this.state.path).full == undefined ) {
 
 			this.initPath( vector )
 
 		} else {
 
-			var path = this.state.path[ this.state.path.length-1 ]
+			var path = last(this.state.path)
 
 			path.top += this.getElipticPath( vector, 0, prevVector.koef )
 
@@ -277,7 +287,7 @@ export default class DrawController extends React.Component {
 
 			path.full = path.top + path.bottom
 
-			path.full += " A " + this.vectors[this.vectors.length-1][0].koef + "," + this.vectors[this.vectors.length-1][0].koef + " 0 0 1" + this.getCoord( this.vectors[this.vectors.length-1][0].start[0] ) + ' Z'
+			path.full += " A " + last(this.vectors)[0].koef + "," + last(this.vectors)[0].koef + " 0 0 1" + this.getCoord( last(this.vectors)[0].start[0] ) + ' Z'
 
 			this.state.path[ this.state.path.length-1 ] = path
 
