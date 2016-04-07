@@ -61,8 +61,10 @@ export default class Draw extends DrawController {
 					<svg
 						className="field"
 						viewBox={ "0 0 " + this.state.size.w + " " + this.state.size.h } 
-						onMouseDown={ this.onMove.bind( this ) } 
-						// onMouseMove={ this.onMove.bind( this ) }
+						onMouseDown={ this.onMouseDown.bind( this ) }
+						onMouseUp={ this.onMouseUp.bind( this ) } 
+						onMouseMove={ this.onMove.bind( this ) }
+						onMouseLeave={ this.onMouseUp.bind( this ) }
 					>
 						{
 							this.state.path.map( ( value, key) => {
@@ -82,21 +84,24 @@ export default class Draw extends DrawController {
 						}
 						{
 
-							this.parts[0].vectors.map( ( value, key ) => {
+							// this.parts.map( ( p ) => {
 
-								return (
+							// 	return p.vectors.map( ( value, key ) => {
 
-									<g key={ key }>
-										<circle 
-											r="5" 
-											cx={ value.impactPoint.x } 
-											cy={ value.impactPoint.y } 
-											fill="rgba(230,0,0,0.5)"
-										></circle>
-									</g>
-								)
+							// 		return (
 
-							})
+							// 			<g key={ key }>
+							// 				<circle 
+							// 					r="5" 
+							// 					cx={ value.impactPoint.x } 
+							// 					cy={ value.impactPoint.y } 
+							// 					fill="rgba(230,0,0,0.5)"
+							// 				></circle>
+							// 			</g>
+							// 		)
+
+							// 	})
+							// })
 
 						}
 					</svg>
